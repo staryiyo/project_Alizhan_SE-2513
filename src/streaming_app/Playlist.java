@@ -7,13 +7,11 @@ public class Playlist {
     private String name;
     private List<Song> songs;
 
-    // Конструктор
     public Playlist(String name) {
         this.name = name;
         this.songs = new ArrayList<>();
     }
 
-    // Геттеры
     public String getName() {
         return name;
     }
@@ -22,7 +20,6 @@ public class Playlist {
         return songs;
     }
 
-    // Методы для управления песнями в плейлисте
     public void addSong(Song song) {
         this.songs.add(song);
         System.out.println("🎶 Песня \"" + song.getTitle() + "\" добавлена в плейлист \"" + name + "\".");
@@ -52,7 +49,7 @@ public class Playlist {
             return;
         }
         for (Song song : songs) {
-            System.out.println(song); // Использует переопределенный toString() из класса Song
+            System.out.println(song);
         }
 
         int totalDuration = getTotalDurationSeconds();
