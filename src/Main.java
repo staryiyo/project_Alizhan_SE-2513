@@ -18,5 +18,7 @@ public class Main{
         Playlist List2 = new Playlist("Pop");
         List2.addSong(liar);
         List2.addSong(blindinglights);
+
+
     }
 };
