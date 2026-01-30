@@ -1,24 +1,30 @@
-import streaming_app.Playlist;
 import streaming_app.Song;
+import streaming_app.SongRepository;
+import java.util.List;
 
-public class Main{
-    public static void main(String[] args){
-        Song liar = new Song("Liar", "Imagine Dragon", 130);
+public class Main {
+    public static void main(String[] args) {
+        SongRepository repository = new SongRepository();
 
-        Song redroom = new Song("Red room", "21 Savage", 110);
+        System.out.println("--- 1. Добавление данных (Write) ---");
+        Song newSong = new Song("Liar", "Imagine Dragons", 130);
+        repository.save(newSong);
 
-        Song manoftheyeah = new Song("Man Of The Yeah", "Bawo", 174);
+        System.out.println("\n--- 2. Чтение данных (Read) ---");
+        List<Song> songs = repository.findAll();
+        for (Song s : songs) {
+            System.out.println("Из базы получено: " + s);
+        }
 
-        Song blindinglights = new Song("Blinding Lights", "The weekend", 200);
+        if (!songs.isEmpty()) {
+            int firstId = songs.get(0).getSongId();
 
-        Playlist List1 = new Playlist("Hip Hop");
-        List1.addSong(redroom);
-        List1.addSong(manoftheyeah);
+            System.out.println("\n--- 3. Обновление (Update) ---");
+            repository.updateDuration(firstId, 200);
 
-        Playlist List2 = new Playlist("Pop");
-        List2.addSong(liar);
-        List2.addSong(blindinglights);
-
-
+            System.out.println("\n--- 4. Удаление (Delete) ---");
+            // repository.delete(firstId); // Раскомментируй, если хочешь проверить удаление
+            // System.out.println("Песня с ID " + firstId + " удалена.");
+        }
     }
-};
+}
